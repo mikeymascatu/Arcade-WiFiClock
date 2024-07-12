@@ -20,11 +20,11 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
 * Open it in Ardunio IDE
 
 * Plug in the clock and select "Raspberry Pi Pico W" in the proper serial port
-  - If installing this for the first time especially after other firmware, hold BOOTSEL on the rear of the clock before plugging in
+       - If installing this for the first time especially after other firmware, hold BOOTSEL on the rear of the clock before plugging in
 
-* Edit the SSID and Password near the top to match your WiFi
+* Edit the SSID and PASS near the top to match your WiFi
 
-* Set the GMT offset on Line __ by adjusting the "-4" (EST) to yours
+* Set the GMT offset on Line 59 by adjusting the "-4" (EST) to yours
 
 * Select Verify, wait for the compilation to complete 
 
@@ -33,10 +33,10 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
 ## Start up sequence
 
 * The clock will appear blank for at least 10 seconds
- - This is normal, the clock is attempting to connect to your WiFi and establish NTP, this may take up to a minute.
+       - This is normal, the clock is attempting to connect to your WiFi and establish NTP, this may take up to a minute.
 
 * Then, the clock will display "SYnC"
-- The clock has established a connection and calculating the correct time
+        - The clock has established a connection and calculating the correct time
 
 * Then, the clock should display the time
  - The clock flashes roughly every 300ms, this normal as the clock refreshes it's NTP connection. 
