@@ -10,37 +10,38 @@ ShiftDisplay2 display(9, 10, 11, COMMON_CATHODE, 4);
 const char* ssid     = "SSID";
 const char* password = "PASS";
 
-// Sets up cilent
+// Define NTP Client to get time
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
-// Time
+// Time variables
 unsigned long epochTime;
 String formattedTime;
 int currentHour;
 int currentMinute;
 int currentSecond;
 
-// Setups display variables
 String displayHours, displayMinutes;
 String displayTime;
+String displaySpacer;
 
 void setup() {
   // Initialize serial monitor
   Serial.begin(115200);
   
   // Attempt to connect to Wi-Fi network
-  Serial.print("Connecting to ");
+  display.set("SYNC");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
+  display.show(4000);
 
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
     Serial.print(".");
-  }
+ }
   Serial.println();
   Serial.println("Connected to WiFi");
+
 
   // Initialize the NTPClient to get time
   timeClient.begin();
@@ -55,20 +56,24 @@ void loop() {
   epochTime = timeClient.getEpochTime();
 
   // Calculate hours, minutes, and seconds from epoch time
-  currentHour = ((epochTime % 86400L) / 3600) - 4; // account for EST, change the -4 for your GMT offset
+  currentHour = ((epochTime % 86400L) / 3600) - 4; // account for EST
   currentMinute = (epochTime % 3600) / 60;
   currentSecond = epochTime % 60;
   
   if (currentHour > 12){
     currentHour = currentHour - 12; 
   }
-
-  // Prepares data for display
+  
   displayHours = String(currentHour);
   displayMinutes = String(currentMinute);
-  displayTime = displayHours += displayMinutes;
+  displaySpacer = String("0");
+  if (currentMinute < 10){
+    displayTime = displayHours += displaySpacer += displayMinutes;
+  } else{
+    displayTime = displayHours += displayMinutes;
+  }
 
-  // Print the current time as serial f
+  // Print the current time
   Serial.print("Current time: ");
   Serial.print(currentHour);
   Serial.print(":");
@@ -82,11 +87,11 @@ void loop() {
   }
   Serial.println(currentSecond);
 
-  //Displays Data
+  display.set(displayTime, ALIGN_RIGHT);
   display.changeDot(1);
-  display.set(displayTime);
-  display.update();
+  display.show(1000);
 
   // Wait for 10 seconds before the next update
-  delay(5000);
+  delay(100);
 }
+
