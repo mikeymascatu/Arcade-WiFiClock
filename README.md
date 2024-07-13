@@ -50,7 +50,7 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
         - The clock has established a connection and calculating the correct time
 
 * Then, the clock should display the time
- - The clock flashes roughly every 300ms, this normal as the clock refreshes it's NTP connection. 
+
 
 
 
