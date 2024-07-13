@@ -55,8 +55,8 @@ void loop() {
   epochTime = timeClient.getEpochTime();
 
   // Calculate hours, minutes, and seconds from epoch time
-  currentHour = ((epochTime % 86400L) / 3600) + 12; // account for time offset from GMT in hours (don't add half hours, read below)
-  currentMinute = ((epochTime % 3600) / 60) + 30; // if your offset is XX:30, replace 0 with 30. If not, leave it alone
+  currentHour = ((epochTime % 86400L) / 3600) - 4; // time offset from GMT in hours (don't add half hours, read below)
+  currentMinute = ((epochTime % 3600) / 60) + 0; // if your offset is XX:30, replace 0 with 30. If not, leave it alone
   currentSecond = epochTime % 60;
   
   //overflow protection
