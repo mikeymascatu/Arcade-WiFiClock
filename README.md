@@ -5,7 +5,7 @@
 
 * Fixed Display flashing issues
 * Relelaxed NTP syncs from 100ms to 1s
-* Overflow protection (prevents negative (or 13+ hours or minutes larger than 60)
+* Overflow protection (prevents negative or unregular hours and times with more than 60 minutes)
 * Allows offsets with half hours (EX: IST = GMT+5:30)
 * Adjusted calculations for more time zones
 * Option to easily disable/enable 12 Hour cycles
