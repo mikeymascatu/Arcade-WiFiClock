@@ -1,6 +1,16 @@
 # Arcade-WiFiClock
 ## Alternative firmware for the Hack Club Hack Hour Clock (Arcade Ticket Counter) that displays the current time using NTP.
 
+### Patch Notes - V1
+
+* Fixed Display flashing issues
+* Relelaxed NTP syncs from 100ms to 1s
+* Overflow protection (prevents negative (or 13+ hours or minutes larger than 60)
+* Allows offsets with half hours (EX: IST = GMT+5:30)
+* Adjusted calculations for more time zones
+* Option to easily disable/enable 12 Hour cycles
+
+
 ## Installation:
 
 * Install Ardunio IDE 2.0 or newer
