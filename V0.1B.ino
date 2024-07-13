@@ -10,7 +10,6 @@ ShiftDisplay2 display(9, 10, 11, COMMON_CATHODE, 4);
 const char* ssid     = "SSID";
 const char* password = "PASS";
 
-// Define NTP Client to get time
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
@@ -56,14 +55,21 @@ void loop() {
   epochTime = timeClient.getEpochTime();
 
   // Calculate hours, minutes, and seconds from epoch time
-  currentHour = ((epochTime % 86400L) / 3600) - 4; // account for EST
-  currentMinute = (epochTime % 3600) / 60;
+  currentHour = ((epochTime % 86400L) / 3600) + 12; // account for time offset from GMT in hours (don't add half hours, read below)
+  currentMinute = ((epochTime % 3600) / 60) + 30; // if your offset is XX:30, replace 0 with 30. If not, leave it alone
   currentSecond = epochTime % 60;
   
+  //overflow protection
   if (currentHour > 12){
     currentHour = currentHour - 12; 
+  } else if (currentHour < 0){
+    currentHour = currentHour + 12;
   }
   
+  if (currentMinute > 60){
+    currentMinute = currentMinute - 60;
+  }
+
   displayHours = String(currentHour);
   displayMinutes = String(currentMinute);
   displaySpacer = String("0");
@@ -90,8 +96,4 @@ void loop() {
   display.set(displayTime, ALIGN_RIGHT);
   display.changeDot(1);
   display.show(1000);
-
-  // Wait for 10 seconds before the next update
-  delay(100);
 }
-
