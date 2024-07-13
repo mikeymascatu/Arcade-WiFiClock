@@ -25,7 +25,8 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
   - ShiftDisplay2: manages the display
   - NTPCilent: allows for communication with NTP servers
 
-* Download the V0.1B.ino file from the repo.
+* Download the V1.ino file from the repo.
+* You can also use the RTCexperimental.ino as another option for a less internet-dependent option but is nowhere near finished
 
 * Open it in Ardunio IDE
 
