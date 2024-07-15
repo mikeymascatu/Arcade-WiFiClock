@@ -51,6 +51,7 @@ https://github.com/earlephilhower/arduino-pico/releases/download/global/package_
 
 * Then, the clock should display the time
 
+* If the clock starts flashing slowly, the clock has lost contact with NTP. Either restart the clock or fixing WiFi issues to fix this.
 
 
 
