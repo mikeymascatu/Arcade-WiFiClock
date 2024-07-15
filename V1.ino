@@ -3,6 +3,8 @@
 #include <WiFiUdp.h>
 #include <ShiftDisplay2.h>
 
+//Note to Arcade Reviewers, portitions of this script were built with ChatGPT. Lines relating to Epoch calculations and Networking were made by AI. The rest (Diplay, formatting of time, ect) was made by me. Thanks :)
+
 // Pin mappings/display settings on the Hack Hour Clock
 ShiftDisplay2 display(9, 10, 11, COMMON_CATHODE, 4);
 
