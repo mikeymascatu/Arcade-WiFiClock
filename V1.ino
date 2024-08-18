@@ -56,25 +56,29 @@ void loop() {
   // Get the epoch time
   epochTime = timeClient.getEpochTime();
 
-  // Calculate hours, minutes, and seconds from epoch time
+  // Calculate hours, minutes, and seconds from epoch time and set time zone
   currentHour = ((epochTime % 86400L) / 3600) - 4; // time offset from GMT in hours (don't add half hours, read below)
   currentMinute = ((epochTime % 3600) / 60) + 0; // if your offset is XX:30, replace 0 with 30. If not, leave it alone
   currentSecond = epochTime % 60;
   
-  //overflow protection
+  //overflow protection V2
+  // comment out the first 2 if statments to disable 12hr time and enable 24hr time
   if (currentHour > 12){
     currentHour = currentHour - 12; 
-  } else if (currentHour < 0){
-    currentHour = currentHour + 12;
-  }
-  
-  if (currentMinute > 60){
+  } 
+  // Double checks to ensure 24hr time is disable
+  if (currentHour > 12){
+    currentHour = currentHour - 12; 
+  } 
+
+  if (currentMinute > 59){
     currentMinute = currentMinute - 60;
   }
 
   displayHours = String(currentHour);
   displayMinutes = String(currentMinute);
   displaySpacer = String("0");
+
   if (currentMinute < 10){
     displayTime = displayHours += displaySpacer += displayMinutes;
   } else{
