@@ -1,6 +1,11 @@
 # Arcade-WiFiClock
 ## Alternative firmware for the Hack Club Hack Hour Clock (Arcade Ticket Counter) that displays the current time using NTP.
 
+### Patch Notes - V1.1
+* Fixed "midnight bug" in which 12AM or 12PM shows up as 0:XX
+* Tuned overflow protection to double check.
+* Fixed issues with 12hr cycles
+
 ### Patch Notes - V1
 
 * Fixed Display flashing issues
