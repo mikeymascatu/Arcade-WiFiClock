@@ -49,7 +49,8 @@ void setup() {
   timeClient.setTimeOffset(0); // Set time offset if necessary
 }
 
-void loop() {
+void loop() 
+{
   // Update the time from the NTP server
   timeClient.update();
 
@@ -70,6 +71,9 @@ void loop() {
   if (currentHour > 12){
     currentHour = currentHour - 12; 
   } 
+    if (currentHour < 0){
+    currentHour = currentHour + 12;
+  }
 
   if (currentMinute > 59){
     currentMinute = currentMinute - 60;
